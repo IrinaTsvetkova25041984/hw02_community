@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+
 class Group(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(unique=True)
@@ -19,7 +20,7 @@ class Post(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='post'
-        )
+    )
 
     group = models.ForeignKey(
         Group,
@@ -27,8 +28,7 @@ class Post(models.Model):
         null=True,
         on_delete=models.CASCADE
     )
-    
-        
+
+
 class Meta:
     abstract = True
-
