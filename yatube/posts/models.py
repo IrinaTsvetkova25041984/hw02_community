@@ -1,5 +1,4 @@
 from django.db import models
-
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
@@ -41,7 +40,7 @@ class Post(models.Model):
         blank=True,
         null=True,
         on_delete=models.SET_NULL,
-        related_name='group',
+        related_name='posts',
         verbose_name='Группа'
     )
 
@@ -49,4 +48,4 @@ class Post(models.Model):
         ordering = ('-pub_date',)
 
     def __str__(self):
-        return self.text
+        return self.text[:15]
