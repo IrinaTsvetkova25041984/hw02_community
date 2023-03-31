@@ -23,7 +23,10 @@ class Group(models.Model):
 
 
 class Post(models.Model):
-    text = models.TextField('Содержание')
+    text = models.TextField(
+        verbose_name='Текст поста',
+        help_text='Введите текст поста'
+    )
     pub_date = models.DateTimeField(
         auto_now_add=True,
         verbose_name='Дата публикации'
@@ -41,7 +44,8 @@ class Post(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         related_name='posts',
-        verbose_name='Группа'
+        verbose_name='Группа',
+        help_text='Группа, к которой будет относиться пост'
     )
 
     class Meta():
@@ -49,3 +53,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.text[:15]
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    body = models.TextField()
+    is_answered = models.BooleanField(default=False)
